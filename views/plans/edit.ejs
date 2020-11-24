@@ -5,7 +5,7 @@
             <div class="container">
                 <h2 class="mt-5">Edição de um plano</h2>
                 <hr>
-                <form action="/plans/store" method="POST">
+                <form action="/plans/update" method="POST">
                     <div class="card">
 
                         <div class="card-header">
@@ -13,14 +13,15 @@
                         </div>
 
                         <div class="card-body">
-                            <input type="text" name="title" id="title" class="form-control" placeholder="Título do plano"><br>
+                            <input type="hidden" name="id" value="<%= plan.id%>">
+                            <input type="text" name="title" id="title" class="form-control" placeholder="Título do plano" value="<%= plan.title %>"><br>
                             <% if(title_msg.length > 0) { %>
                                 <div class="alert alert-danger">
                                     <%= title_msg %>
                                 </div>
                                 <br>
                                 <% } %>
-                                    <input type="number" name="list" id="list" placeholder="N* de listas" class="form-control"><br>
+                                    <input type="number" name="list" id="list" placeholder="N* de listas" class="form-control" value="<%= plan.list %>"><br>
 
                                     <% if(list_msg.length > 0) { %>
                                         <div class="alert alert-danger">
@@ -29,14 +30,14 @@
                                         <br>
                                         <% } %>
 
-                                            <input type="number" name="client" id="client" placeholder="N* de clientes" class="form-control"><br>
+                                            <input type="number" name="client" id="client" placeholder="N* de clientes" class="form-control" value="<%= plan.client %>"><br>
                                             <% if(client_msg.length > 0) { %>
                                                 <div class="alert alert-danger">
                                                     <%= client_msg %>
                                                 </div>
                                                 <br>
                                                 <% } %>
-                                                    <input type="number" name="value" id="value" placeholder="Custo" class="form-control"><br>
+                                                    <input type="number" name="value" id="value" placeholder="Custo" class="form-control" value="<%= plan.value %>"><br>
                                                     <% if(value_msg.length > 0) { %>
                                                         <div class="alert alert-danger">
                                                             <%= value_msg %>
@@ -44,7 +45,13 @@
                                                         <br>
                                                         <% } %>
 
-                                                            <hr> Permite importação de lista: <input type="checkbox" name="imports" id="imports">
+                                                            <hr> Permite importação de lista:
+                                                            <% if(plan.import) {%>
+                                                                <input type="checkbox" name="imports" id="imports" checked>
+
+                                                                <%} else{%>
+                                                                    <input type="checkbox" name="imports" id="imports">
+                                                                    <% }%>
                         </div>
 
                         <div class="card-footer">
