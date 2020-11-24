@@ -15,14 +15,57 @@ class PlansService {
         }
     }
 
-    async getByAll() {
+    async getById(id) {
         try {
-            return await this.Plan.findAll();
+            return await this.Plan.findByPk(id);
         } catch (error) {
 
             return undefined;
         }
     }
+
+    async deactivate(id) {
+        try {
+            var plan = await this.getById(id)
+            if (plan.deactivated) {
+                plan.deactivated = false;
+                await plan.save();
+            } else {
+                plan.deactivated = true;
+                await plan.save();
+            }
+
+            return true;
+        } catch (error) {
+            return false;
+        }
+
+    }
+
+    async update(id, data) {
+        var errors = {};
+        var isValid = this.validate(data, errors);
+
+        if (isValid) {
+            try {
+                var plan = await this.getById(id)
+                plan.title = data.title;
+                plan.list = data.list;
+                plan.value = data.value;
+                plan.client = data.client
+                await plan.save();
+                return true;
+            } catch (errors) {
+                errors.system_msg = "Impossivel atualizar o plano"
+                return errors;
+            }
+        } else {
+            return errors;
+        }
+
+
+    }
+
 
     async store(plans) {
 
@@ -108,6 +151,8 @@ class PlansService {
             return false;
         }
     }
+
+
 
 
 }

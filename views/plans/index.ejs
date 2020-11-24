@@ -1,5 +1,5 @@
-<%- include("../partials/header.ejs") %>
-    <%- include("../partials/homenavbar.ejs") %>
+<%- include ("../partials/header.ejs") %>
+    <%- include("../partials/homenavbar.ejs" ) %>
 
 
         <body>
@@ -20,12 +20,19 @@
                             <th>
                                 Preço
                             </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Acoes
+                            </th>
+
 
                         </tr>
                     </thead>
                     <tbody>
 
-                        <% plans.forEach(plan =>{ %>
+                        <% plans.forEach(plan=>{ %>
 
 
                             <tr>
@@ -38,6 +45,25 @@
                                 <td>AKZ
                                     <%=plan.value%>
                                 </td>
+                                <td>
+
+                                    <% if(plan.deactivated){ %>
+                                        Desactivado
+                                        <%}else{%>
+                                            Activo
+                                            <% }%>
+                                </td>
+
+                                <td>
+                                    <a href="/plans/deactivate/<%= plan.id %>">
+
+                                        <% if(plan.deactivated){ %>
+                                            Activar
+                                            <%}else{%>
+                                                Desactivar
+                                                <% }%> %>
+                                    </a>
+                                </td>
 
 
                             </tr>
@@ -47,4 +73,4 @@
                 </table>
             </div>
         </body>
-        <%- include( "../partials/footer.ejs") %>
+        <%- include("../partials/footer.ejs" ) %>
