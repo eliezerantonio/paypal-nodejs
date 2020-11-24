@@ -1,0 +1,50 @@
+<%- include("../partials/header.ejs") %>
+    <%- include("../partials/homenavbar.ejs") %>
+
+
+        <body>
+
+
+            <div class="container">
+                <h2 class="mt-5">Listagem de planos</h2>
+                <hr>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>
+                                ID
+                            </th>
+                            <th>
+                                Nome
+                            </th>
+                            <th>
+                                Preço
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <% plans.forEach(plan =>{ %>
+
+
+                            <tr>
+                                <td>
+                                    <%=plan.id%>
+                                </td>
+                                <td>
+                                    <%=plan.title%>
+                                </td>
+                                <td>AKZ
+                                    <%=plan.value%>
+                                </td>
+
+
+                            </tr>
+
+                            <%})%>
+                    </tbody>
+                </table>
+            </div>
+        </body>
+        <%- include( "../partials/footer.ejs") %>

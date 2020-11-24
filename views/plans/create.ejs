@@ -1,0 +1,58 @@
+<%- include ("../partials/header.ejs") %>
+    <%- include ("../partials/homenavbar.ejs") %>
+
+        <body>
+            <div class="container">
+                <h2 class="mt-5">Criação de um novo plano</h2>
+                <hr>
+                <form action="/plans/store" method="POST">
+                    <div class="card">
+
+                        <div class="card-header">
+                            <h4>Novo plano</h4>
+                        </div>
+
+                        <div class="card-body">
+                            <input type="text" name="title" id="title" class="form-control" placeholder="Título do plano"><br>
+                            <% if(title_msg.length > 0) { %>
+                                <div class="alert alert-danger">
+                                    <%= title_msg %>
+                                </div>
+                                <br>
+                                <% } %>
+                                    <input type="number" name="list" id="list" placeholder="N* de listas" class="form-control"><br>
+
+                                    <% if(list_msg.length > 0) { %>
+                                        <div class="alert alert-danger">
+                                            <%= list_msg %>
+                                        </div>
+                                        <br>
+                                        <% } %>
+
+                                            <input type="number" name="client" id="client" placeholder="N* de clientes" class="form-control"><br>
+                                            <% if(client_msg.length > 0) { %>
+                                                <div class="alert alert-danger">
+                                                    <%= client_msg %>
+                                                </div>
+                                                <br>
+                                                <% } %>
+                                                    <input type="number" name="value" id="value" placeholder="Custo" class="form-control"><br>
+                                                    <% if(value_msg.length > 0) { %>
+                                                        <div class="alert alert-danger">
+                                                            <%= value_msg %>
+                                                        </div>
+                                                        <br>
+                                                        <% } %>
+
+                                                            <hr> Permite importação de lista: <input type="checkbox" name="imports" id="imports">
+                        </div>
+
+                        <div class="card-footer">
+                            <button class="btn btn-success btn-block">Cadastrar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </body>
+
+        <%- include ("../partials/footer.ejs") %>
